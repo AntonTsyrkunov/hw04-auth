@@ -19,7 +19,7 @@ const register = async (req, res) => {
   res.status(201).json({
     user: {
       email: newUser.email,
-      password: newUser.password,
+      subscription: newUser.subscription,
     }
   });
 };
@@ -65,10 +65,8 @@ const getCurrent = async (req, res) => {
 const logout = async (req, res) => {
   const {_id} = req.user;
   await User.findByIdAndUpdate(_id, {token: ""});
-
-  res.json({
-    message: "Logout success"
-  })
+  
+  res.status(204).json({});
 }
 
 module.exports = {
